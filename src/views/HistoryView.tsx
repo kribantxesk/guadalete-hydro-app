@@ -120,13 +120,33 @@ export const HistoryView: React.FC = () => {
                     </div>
                 </BaseCard>
 
+                <BaseCard title="Lluvias Torrenciales de Semana Santa (Marzo 2024)" icon={Droplet} alertLevel="Yellow">
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                            Tras un invierno extremadamente seco, la borrasca Nelson cruzó la península durante la Semana Santa dejando precipitaciones históricas. En solo una semana, la cuenca del Guadalete pasó de un estado de pre-alerta por sequía a tener que abrir compuertas puntualmente.
+                        </p>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.05)', padding: '0.5rem 1rem', borderRadius: '8px' }}>
+                            <span style={{ color: 'var(--text-primary)' }}>Recuperación Exprés</span>
+                            <span style={{ color: 'var(--status-yellow)', fontWeight: 'bold' }}>Del 15% al 70% en 10 días</span>
+                        </div>
+                    </div>
+                </BaseCard>
+
                 <BaseCard title="Sequía Extrema (1995)" icon={Droplet} alertLevel="Yellow">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.5' }}>
-                            La peor sequía del siglo XX en España tuvo su pico en 1995. Los pantanos de la provincia de Cádiz, incluyendo Guadalcacín y Hurones, bajaron al 10% de su capacidad. Se impusieron cortes de agua de hasta 10 horas diarias en los núcleos urbanos de la Bahía de Cádiz y Jerez.
+                            La peor sequía del siglo XX en España tuvo su pico en 1995. Los pantanos de la provincia de Cádiz bajaron al 10% de su capacidad. Se impusieron cortes de agua de hasta 10 horas diarias en los núcleos urbanos de la Bahía y Jerez.
                         </p>
-                        <div style={{ padding: '0.8rem', background: 'rgba(245, 158, 11, 0.1)', borderLeft: '4px solid var(--status-yellow)', borderRadius: '0 8px 8px 0' }}>
-                            <strong style={{ color: 'var(--status-yellow)' }}>Dato Crítico:</strong> El Embalse de Guadalcacín, el mayor de la provincia, casi se secó por completo mostrando ruinas de antiguos cortijos bajo sus aguas.
+                    </div>
+                </BaseCard>
+
+                <BaseCard title="El Año de los Diluvios (Marzo 1881)" icon={Waves} alertLevel="Red">
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                            Uno de los desastres hidrológicos más antiguos documentados en Jerez. Las lluvias torrenciales provocaron que el río Guadalete arrasara con puentes, molinos y cientos de cabezas de ganado, aislando la ciudad.
+                        </p>
+                        <div style={{ padding: '0.8rem', background: 'rgba(239, 68, 68, 0.1)', borderLeft: '4px solid var(--status-red)', borderRadius: '0 8px 8px 0' }}>
+                            <strong style={{ color: 'var(--status-red)' }}>Dato Histórico:</strong> El agua alcanzó cotas de hasta 6 metros por encima de su cauce habitual en El Portal.
                         </div>
                     </div>
                 </BaseCard>
