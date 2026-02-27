@@ -50,7 +50,7 @@ export const RiverCard: React.FC<RiverCardProps> = ({ stations }) => {
                                         <LineChart data={chartData}>
                                             <YAxis domain={['dataMin', 'dataMax']} hide />
                                             <Tooltip
-                                                formatter={(value: number) => [`${value}m`, 'Nivel']}
+                                                formatter={(value: any) => [`${value}m`, 'Nivel']}
                                                 labelFormatter={() => ''}
                                                 contentStyle={{ backgroundColor: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: 'var(--text-primary)' }}
                                             />
