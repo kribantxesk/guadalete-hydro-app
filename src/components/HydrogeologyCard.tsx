@@ -1,6 +1,13 @@
 import React from 'react';
-import { Mountain, Droplet } from 'lucide-react';
+import { Mountain, Droplet, Info } from 'lucide-react';
 import { BaseCard } from './BaseCard';
+
+const InfoTooltip: React.FC<{ text: string }> = ({ text }) => (
+    <div className="info-tooltip-container">
+        <Info size={14} className="info-tooltip-icon" />
+        <span className="info-tooltip-content">{text}</span>
+    </div>
+);
 
 interface HydrogeologyCardProps {
     phreaticLevel: string;
@@ -35,7 +42,10 @@ export const HydrogeologyCard: React.FC<HydrogeologyCardProps> = ({
                 {/* Visual Saturation Bar */}
                 <div className="flex-col" style={{ gap: '0.4rem' }}>
                     <div className="flex-between">
-                        <span className="data-label" style={{ fontSize: '0.9rem' }}>Nivel de Saturación Kárstica</span>
+                        <span className="data-label" style={{ fontSize: '0.9rem', display: 'flex', alignItems: 'center' }}>
+                            Nivel de Saturación Kárstica
+                            <InfoTooltip text="La Sierra de Grazalema es de roca caliza (Kárstica). Actúa como una esponja gigante. Un porcentaje alto indica que el subsuelo está lleno y no puede absorber más agua rápida, aumentando el riesgo de riadas súbitas en el Guadalete." />
+                        </span>
                         <span style={{ color, fontSize: '1.1rem', fontWeight: 'bold' }}>{saturationPct}%</span>
                     </div>
                     <div className="progress-bg" style={{ height: '10px', background: 'rgba(255,255,255,0.1)', borderRadius: '5px', overflow: 'hidden' }}>
@@ -66,8 +76,9 @@ export const HydrogeologyCard: React.FC<HydrogeologyCardProps> = ({
                         </span>
                         <span style={{ color: 'var(--text-primary)', fontWeight: 'bold' }}>{rain60Days.toFixed(1)} mm</span>
                     </div>
-                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', display: 'flex', alignItems: 'center' }}>
                         {phreaticLevel.split('(')[0].trim()}
+                        <InfoTooltip text="El nivel freático indica a qué profundidad está el agua acumulada bajo tierra. Si llueve mucho de golpe pero el acuífero estaba muy bajo (Profundo), el riesgo de riada es menor porque la tierra aún puede absorber millones de litros." />
                     </div>
                 </div>
 

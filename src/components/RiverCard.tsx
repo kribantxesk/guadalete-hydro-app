@@ -1,7 +1,14 @@
 import React from 'react';
-import { Waves } from 'lucide-react';
+import { Waves, Info } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, YAxis, Tooltip } from 'recharts';
 import { BaseCard } from './BaseCard';
+
+const InfoTooltip: React.FC<{ text: string }> = ({ text }) => (
+    <div className="info-tooltip-container">
+        <Info size={14} className="info-tooltip-icon" />
+        <span className="info-tooltip-content">{text}</span>
+    </div>
+);
 
 export interface RiverStation {
     name: string;
@@ -35,9 +42,15 @@ export const RiverCard: React.FC<RiverCardProps> = ({ stations }) => {
                                 <div className="data-label">{s.name}</div>
                                 <div style={{ textAlign: 'right' }}>
                                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'flex-end' }}>
-                                        <span className="data-value">{s.level.toFixed(2)}<span className="data-unit">m</span></span>
+                                        <span className="data-value" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                                            {s.level.toFixed(2)}<span className="data-unit">m</span>
+                                            <InfoTooltip text="Profundidad actual de la lámina de agua del río respecto al lecho del cauce base." />
+                                        </span>
                                         <span style={{ color: 'var(--text-secondary)' }}>|</span>
-                                        <span className="data-value">{s.flow.toFixed(1)}<span className="data-unit">m³/s</span></span>
+                                        <span className="data-value" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                                            {s.flow.toFixed(1)}<span className="data-unit">m³/s</span>
+                                            <InfoTooltip text="Caudal. Volumen de agua que atraviesa la sección del río por segundo. 1 m³/s equivale a 1.000 litros por segundo fluyendo." />
+                                        </span>
                                     </div>
                                     <div style={{ fontSize: '0.75rem', color: s.alertLvl === 3 ? 'var(--status-red)' : s.alertLvl === 2 ? 'var(--status-yellow)' : 'var(--status-green)', marginTop: '2px' }}>
                                         Nivel {s.alertLvl}
