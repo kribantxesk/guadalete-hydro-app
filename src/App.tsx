@@ -10,6 +10,7 @@ import { ForecastCard } from './components/ForecastCard';
 import { MapCard } from './components/MapCard';
 import { Navbar } from './components/Navbar';
 import { HistoryView } from './views/HistoryView';
+import { ReloadPrompt } from './components/ReloadPrompt';
 
 function App() {
   const [data, setData] = useState<any>(null);
@@ -116,6 +117,7 @@ function App() {
           <HistoryView />
         )}
       </main>
+      <ReloadPrompt />
     </div>
   );
 }
