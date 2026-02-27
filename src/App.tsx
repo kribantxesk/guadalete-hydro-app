@@ -84,7 +84,7 @@ function App() {
       <main style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '1rem' }}>
         {currentView === 'dashboard' ? (
           <>
-            <StatusBanner status={data.status} time={data.time} />
+            <StatusBanner status={data.status} time={data.time} warnings={data.warnings} />
             <WeatherCard stations={data.weatherStations} />
             <RiverCard stations={data.riverStations} />
             <ReservoirCard stations={data.reservoirs} />

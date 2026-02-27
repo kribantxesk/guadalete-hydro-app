@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BaseCard } from './BaseCard';
 import { MapContainer, TileLayer, Popup, CircleMarker, LayersControl } from 'react-leaflet';
 import { Map } from 'lucide-react';
@@ -35,6 +35,25 @@ const COORDS: Record<string, [number, number]> = {
 };
 
 export const MapCard: React.FC<MapCardProps> = ({ riverStations, reservoirs }) => {
+    const [radarUrl, setRadarUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        // Fetch the latest timestamp and path for RainViewer Radar
+        fetch('https://api.rainviewer.com/public/weather-maps.json')
+            .then(res => res.json())
+            .then(data => {
+                const past = data.radar.past;
+                if (past && past.length > 0) {
+                    const latest = past[past.length - 1]; // Get most recent past frame
+                    // Build tile url: host + path + /256/{z}/{x}/{y}/[colorScheme]/[smooth]_[snow].png
+                    // colorScheme 2 is standard weather radar. smooth 1 enables smoothing.
+                    const url = `${data.host}${latest.path}/256/{z}/{x}/{y}/2/1_1.png`;
+                    setRadarUrl(url);
+                }
+            })
+            .catch(err => console.error("Error fetching RainViewer data:", err));
+    }, []);
+
     return (
         <BaseCard title="Mapa Interactivo - Cuenca Hidrográfica de Cádiz" style={{ gridColumn: '1 / -1', height: '400px', display: 'flex', flexDirection: 'column' }} icon={Map}>
             <div style={{ flex: 1, borderRadius: '8px', overflow: 'hidden', marginTop: '1rem', border: '1px solid var(--glass-border)' }}>
@@ -60,6 +79,17 @@ export const MapCard: React.FC<MapCardProps> = ({ riverStations, reservoirs }) =
                             />
                         </BaseLayer>
                     </LayersControl>
+
+                    {radarUrl && (
+                        <LayersControl.Overlay checked name="Radar de Precipitaciones (Lluvia)">
+                            <TileLayer
+                                url={radarUrl}
+                                opacity={0.6}
+                                zIndex={10}
+                                attribution='<a href="https://rainviewer.com">RainViewer</a>'
+                            />
+                        </LayersControl.Overlay>
+                    )}
 
                     {/* Rivers */}
                     {riverStations.map((station, i) => {
