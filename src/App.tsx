@@ -11,6 +11,7 @@ import { MapCard } from './components/MapCard';
 import { Navbar } from './components/Navbar';
 import { HistoryView } from './views/HistoryView';
 import { ReloadPrompt } from './components/ReloadPrompt';
+import { LiveCamsCard } from './components/LiveCamsCard';
 
 function App() {
   const [data, setData] = useState<any>(null);
@@ -107,6 +108,8 @@ function App() {
             <div className="animate-fade-in"><ForecastCard description={data.forecast} /></div>
 
             <div className="animate-fade-in"><MapCard riverStations={data.riverStations} reservoirs={data.reservoirs} /></div>
+
+            <div className="animate-fade-in"><LiveCamsCard /></div>
 
             <footer className="animate-fade-in" style={{ textAlign: 'center', padding: '2rem 0', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
               <p>Fuentes: SAIH Hidrosur, Weathercloud, DGT, AEMET</p>
