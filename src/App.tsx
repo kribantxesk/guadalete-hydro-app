@@ -84,13 +84,13 @@ function App() {
       <main style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '1rem' }}>
         {currentView === 'dashboard' ? (
           <>
-            <StatusBanner status={data.status} time={data.time} warnings={data.warnings} />
-            <WeatherCard stations={data.weatherStations} />
-            <RiverCard stations={data.riverStations} />
-            <ReservoirCard stations={data.reservoirs} />
-            <TrafficCard traffic={data.traffic} />
+            <div className="animate-fade-in"><StatusBanner status={data.status} time={data.time} warnings={data.warnings} /></div>
+            <div className="animate-fade-in"><WeatherCard stations={data.weatherStations} /></div>
+            <div className="animate-fade-in"><RiverCard stations={data.riverStations} /></div>
+            <div className="animate-fade-in"><ReservoirCard stations={data.reservoirs} /></div>
+            <div className="animate-fade-in"><TrafficCard traffic={data.traffic} /></div>
 
-            <div className="grid-2" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div className="grid-2 animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <HydrogeologyCard
                 phreaticLevel={data.hydrogeology.phreaticLevel}
                 karsticSaturation={data.hydrogeology.karsticSaturation}
@@ -103,11 +103,11 @@ function App() {
               />
             </div>
 
-            <ForecastCard description={data.forecast} />
+            <div className="animate-fade-in"><ForecastCard description={data.forecast} /></div>
 
-            <MapCard riverStations={data.riverStations} reservoirs={data.reservoirs} />
+            <div className="animate-fade-in"><MapCard riverStations={data.riverStations} reservoirs={data.reservoirs} /></div>
 
-            <footer style={{ textAlign: 'center', padding: '2rem 0', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
+            <footer className="animate-fade-in" style={{ textAlign: 'center', padding: '2rem 0', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
               <p>Fuentes: SAIH Hidrosur, Weathercloud, DGT, AEMET</p>
               <p style={{ marginTop: '0.5rem', opacity: 0.5 }}>BANO SOFT</p>
             </footer>
