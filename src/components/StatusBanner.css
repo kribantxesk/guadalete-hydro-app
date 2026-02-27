@@ -1,0 +1,65 @@
+.status-banner {
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(20, 20, 30, 0.4) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--banner-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px 0 var(--banner-glow);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.status-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--banner-color);
+    box-shadow: 0 0 15px var(--banner-color);
+}
+
+.status-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-icon {
+    color: var(--banner-color);
+    filter: drop-shadow(0 0 8px var(--banner-color));
+}
+
+.status-title {
+    font-size: 1.3rem;
+    color: var(--banner-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.2rem;
+}
+
+.status-time {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+.status-badge {
+    background-color: var(--banner-glow);
+    color: var(--banner-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
