@@ -3,9 +3,9 @@
     justify-content: center;
     gap: 1rem;
     padding: 1rem;
-    background: rgba(14, 20, 29, 0.8);
+    background: var(--navbar-bg);
     backdrop-filter: blur(10px);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid var(--glass-border);
     position: sticky;
     top: 0;
     z-index: 1000;

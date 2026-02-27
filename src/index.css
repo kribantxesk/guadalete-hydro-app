@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
-:root {
+:root,
+[data-theme="dark"] {
   /* Core Colors */
   --bg-primary: #0a0a0f;
   --bg-secondary: rgba(20, 20, 25, 0.7);
+  --bg-gradient-start: rgba(20, 30, 50, 0.2);
   --text-primary: #ffffff;
   --text-secondary: #a0a0b0;
 
@@ -23,11 +25,45 @@
   --glass-bg: rgba(25, 25, 35, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-hover-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+
+  /* Navbar */
+  --navbar-bg: rgba(14, 20, 29, 0.8);
 
   /* Spacing & Radii */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
+}
+
+[data-theme="light"] {
+  /* Core Colors */
+  --bg-primary: #f8fafc;
+  --bg-secondary: rgba(255, 255, 255, 0.7);
+  --bg-gradient-start: rgba(226, 232, 240, 0.4);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+
+  /* Status Colors (Same semantics but maybe slightly tweaked for contrast if needed) */
+  --status-green: #059669;
+  --status-yellow: #d97706;
+  --status-red: #dc2626;
+  --status-black: #0f172a;
+
+  /* Status Glows */
+  --glow-green: rgba(16, 185, 129, 0.15);
+  --glow-yellow: rgba(245, 158, 11, 0.15);
+  --glow-red: rgba(239, 68, 68, 0.15);
+  --glow-black: rgba(100, 100, 100, 0.15);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  --glass-hover-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.1);
+
+  /* Navbar */
+  --navbar-bg: rgba(255, 255, 255, 0.8);
 }
 
 * {
@@ -40,8 +76,8 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--bg-primary);
   background-image:
-    radial-gradient(circle at 15% 50%, rgba(20, 30, 50, 0.2), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(20, 30, 50, 0.2), transparent 25%);
+    radial-gradient(circle at 15% 50%, var(--bg-gradient-start), transparent 25%),
+    radial-gradient(circle at 85% 30%, var(--bg-gradient-start), transparent 25%);
   color: var(--text-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -73,7 +109,7 @@ h6 {
 
 .glass-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+  box-shadow: var(--glass-hover-shadow);
 }
 
 /* App Layout */
@@ -97,7 +133,7 @@ h6 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 10, 15, 0.8);
+  background: var(--navbar-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--glass-border);
   margin: -1rem -1rem 1rem -1rem;

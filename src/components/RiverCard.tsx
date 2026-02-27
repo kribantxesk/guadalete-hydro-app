@@ -1,6 +1,6 @@
 import React from 'react';
 import { Waves } from 'lucide-react';
-import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
+import { LineChart, Line, ResponsiveContainer, YAxis, Tooltip } from 'recharts';
 import { BaseCard } from './BaseCard';
 
 export interface RiverStation {
@@ -30,7 +30,7 @@ export const RiverCard: React.FC<RiverCardProps> = ({ stations }) => {
                     const strokeColor = s.alertLvl === 3 ? '#ef4444' : s.alertLvl === 2 ? '#f59e0b' : '#3b82f6';
 
                     return (
-                        <div key={idx} className="data-row" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem', paddingTop: '0.5rem' }}>
+                        <div key={idx} className="data-row" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', borderBottom: '1px solid var(--glass-border)', paddingBottom: '0.8rem', paddingTop: '0.5rem' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                                 <div className="data-label">{s.name}</div>
                                 <div style={{ textAlign: 'right' }}>
@@ -49,6 +49,11 @@ export const RiverCard: React.FC<RiverCardProps> = ({ stations }) => {
                                     <ResponsiveContainer width="100%" height="100%">
                                         <LineChart data={chartData}>
                                             <YAxis domain={['dataMin', 'dataMax']} hide />
+                                            <Tooltip
+                                                formatter={(value: number) => [`${value}m`, 'Nivel']}
+                                                labelFormatter={() => ''}
+                                                contentStyle={{ backgroundColor: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: 'var(--text-primary)' }}
+                                            />
                                             <Line type="monotone" dataKey="value" stroke={strokeColor} strokeWidth={2} dot={false} isAnimationActive={false} />
                                         </LineChart>
                                     </ResponsiveContainer>

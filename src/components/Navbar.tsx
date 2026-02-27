@@ -1,13 +1,15 @@
 import React from 'react';
-import { LayoutDashboard, History } from 'lucide-react';
+import { LayoutDashboard, History, Sun, Moon } from 'lucide-react';
 import './Navbar.css';
 
 interface NavbarProps {
     currentView: 'dashboard' | 'history';
     onViewChange: (view: 'dashboard' | 'history') => void;
+    theme?: 'light' | 'dark';
+    onThemeToggle?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange, theme = 'dark', onThemeToggle }) => {
     return (
         <nav className="navbar">
             <button
@@ -24,6 +26,19 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange }) => 
                 <History size={18} />
                 <span>Hitos Históricos</span>
             </button>
+
+            <div style={{ flex: 1 }}></div>
+
+            {onThemeToggle && (
+                <button
+                    className="nav-button"
+                    onClick={onThemeToggle}
+                    title="Alternar tema"
+                    style={{ padding: '0.5rem' }}
+                >
+                    {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+            )}
         </nav>
     );
 };

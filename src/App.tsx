@@ -15,6 +15,20 @@ function App() {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentView, setCurrentView] = useState<'dashboard' | 'history'>('dashboard');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('guadalete-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('guadalete-theme', theme);
+  }, [theme]);
+
+  const handleThemeToggle = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,7 +74,12 @@ function App() {
         <p className="app-subtitle">Informe Hidrográfico en Tiempo Real</p>
       </header>
 
-      <Navbar currentView={currentView} onViewChange={setCurrentView} />
+      <Navbar
+        currentView={currentView}
+        onViewChange={setCurrentView}
+        theme={theme}
+        onThemeToggle={handleThemeToggle}
+      />
 
       <main style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '1rem' }}>
         {currentView === 'dashboard' ? (
